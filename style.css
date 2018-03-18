@@ -1,0 +1,34 @@
+body {
+  background: blue;
+  font-family: arial, sans-serif;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-size: 40px;
+}
+
+#temp {
+    color: blue;
+}
+
+#instructions {
+  font-size: 15px;
+  background: lightblue
+}
+
+#icon {
+      width: 10%;
+    height: auto;
+ 
+}
+
+body {
+  background-image: url("http://openweathermap.org/img/w/09d.png");
+
+  background-repeat: no-repeat;
+  background-position: right ;
+  background-size: 30%;
+}
