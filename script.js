@@ -37,13 +37,13 @@ function showPosition(position) {
     if (this.readyState == 4 && this.status == 200) {
       var myObj = JSON.parse(this.responseText);
       document.getElementById("town").innerHTML = myObj.name; // city name
-      document.getElementById("conditions").innerHTML = myObj.weather[2].main; // current conditions.
+      document.getElementById("conditions").innerHTML = myObj.weather[0].description; // current conditions.
 
       //alert(myObj.weather[2].icon) // use this alert to check weather icon numbering.
 
       var body = document.getElementsByTagName("body")[0]; // Grabs control of background image.
 
-      var weatherIcon = myObj.weather[2].icon; // myObj.weather[2].icon will give the icon numbering to use.
+      var weatherIcon = myObj.weather[0].icon; // myObj.weather[2].icon will give the icon numbering to use.
 
       body.style.backgroundImage =
         "url(http://openweathermap.org/img/w/" + weatherIcon + ".png)";
@@ -71,10 +71,18 @@ function showPosition(position) {
       } else if (myObj.wind.deg > 270) {
         windDeg = "northwest";
       }
-
-      document.getElementById("wind").innerHTML =
+      
+      if (measurementType === "imperial") {
+              document.getElementById("wind").innerHTML =
         "Wind is " + Math.round(myObj.wind.speed) + " " + speedType;
       document.getElementById("wind").innerHTML += " from the " + windDeg;
+      }
+      
+      else {
+        document.getElementById("wind").innerHTML =
+        "Wind is " + Math.round(myObj.wind.speed * 3.9) + " " + speedType; // This is to correct Open Weather Map inaccuracies.
+         document.getElementById("wind").innerHTML += " from the " + windDeg;
+      }
     }
   };
 
